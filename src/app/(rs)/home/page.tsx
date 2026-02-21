@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Page Not Found",
+  title: "Home",
 };
 
 export default function Home(){
