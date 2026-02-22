@@ -2,6 +2,7 @@ import BackButton from "@/components/BackButton";
 import { getCustomer } from "@/lib/queries/getCustomer";
 import { getTicket } from "@/lib/queries/getTicket";
 import * as Sentry from "@sentry/nextjs";
+import TicketForm from "@/app/(rs)/tickets/form/TicketForm";
 
 export default async function TicketFormPage({
   searchParams,
@@ -15,7 +16,7 @@ export default async function TicketFormPage({
       return (
         <>
           <h2 className="text-2xl mb-2">
-            Ticket ID or Customer ID is required to load tciket form
+            Ticket ID or Customer ID is required to load ticket form
           </h2>
           <BackButton title="Go Back" variant="default" />
         </>
@@ -48,8 +49,7 @@ export default async function TicketFormPage({
         );
       }
 
-      // Return ticket form
-      console.log("customer: ", customer);
+      return <TicketForm customer={customer} />;
     }
     if (ticketId) {
       const ticket = await getTicket(parseInt(ticketId));
@@ -65,9 +65,7 @@ export default async function TicketFormPage({
 
       const customer = await getCustomer(ticket.customerId);
 
-      //return ticket form
-      console.log("ticket: ", ticket);
-      console.log("customer: ", customer);
+      return <TicketForm customer={customer} ticket={ticket} />;
     }
   } catch (error) {
     if (error instanceof Error) {

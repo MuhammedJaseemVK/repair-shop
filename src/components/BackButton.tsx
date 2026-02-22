@@ -1,8 +1,8 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { ButtonHTMLAttributes } from "react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   title: string;
